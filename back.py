@@ -1,16 +1,13 @@
-pip install flask
-
 from flask import Flask, render_template, request, redirect, url_for
 import pandas as pd
-from twilio.rest import Client
+import requests
 import os
 
-app = Flask(__name__)
+app = Flask(_name_)
 
-# Configurações do Twilio
-account_sid = 'your_account_sid'
-auth_token = 'your_auth_token'
-client = Client(account_sid, auth_token)
+# Configurações da API do WhatsApp Business
+whatsapp_api_url = 'https://graph.facebook.com/v17.0/your_phone_number_id/messages'
+access_token = 'your_access_token'
 
 @app.route('/')
 def index():
@@ -32,20 +29,32 @@ def upload_file():
 
             # Leitura do CSV e envio de mensagens
             df = pd.read_csv(filepath)
+            headers = {
+                'Authorization': f'Bearer {access_token}',
+                'Content-Type': 'application/json'
+            }
+
             for index, row in df.iterrows():
                 produto = row['Nome do Produto']
                 preco = row['Preço']
                 mensagem = f'O produto {produto} está disponível por R${preco:.2f}.'
+                
+                data = {
+                    "messaging_product": "whatsapp",
+                    "to": "55XXXXXXXXX",  # Número do destinatário
+                    "type": "text",
+                    "text": {
+                        "body": mensagem
+                    }
+                }
 
-                message = client.messages.create(
-                    body=mensagem,
-                    from_='whatsapp:+14155238886',  # Número do Twilio WhatsApp
-                    to='whatsapp:+55XXXXXXXXX'  # Número do destinatário
-                )
+                response = requests.post(whatsapp_api_url, json=data, headers=headers)
+                if response.status_code != 200:
+                    return f'Erro ao enviar mensagem: {response.text}'
 
             return 'Mensagens enviadas com sucesso!'
 
-if __name__ == '__main__':
+if _name_ == '_main_':
     if not os.path.exists('uploads'):
         os.makedirs('uploads')
     app.run(debug=True)
