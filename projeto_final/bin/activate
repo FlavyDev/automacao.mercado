@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/flaviane120/[eng_software]/projeto_final"
+VIRTUAL_ENV="/home/flaviane120/automacao_mercado/projeto_final"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
