@@ -8,8 +8,10 @@ import os
 app = Flask(__name__) #__name__
 
 # Configurações da API do WhatsApp Business
-whatsapp_api_url = 'https://graph.facebook.com/v17.0/your_phone_number_id/messages'
-access_token = 'your_access_token'
+whatsapp_api_url = 'https://graph.facebook.com/v20.0/384292588108432/messages'
+access_token = 'EAANE9ZALzz5cBO3t7kLpZBDC1PsK2uFMxYxr13mawqvnG4ZAosWEj69vIAi3fOXpkJI5HKdJ47xLmoArseA0ZBEqPwjUcPzlPl3A5OaFziZAXW0YpBwYD2R8moQKUP0PeWm2RgnI5KgBkC1a0scz41TyicRZBtwrQqVDxIrkKZAc8BKRwdfQYk06oR2bRXxPjyRoFzCNSuSXdCFWGdpxZCjhCdwE990ZD'
+
+
 
 @app.route('/')
 def index():
@@ -43,7 +45,7 @@ def upload_file():
                 
                 data = {
                     "messaging_product": "whatsapp",
-                    "to": "55XXXXXXXXX",  # Número do destinatário
+                    "to": "5579999019286",  # Número do destinatário
                     "type": "text",
                     "text": {
                         "body": mensagem
