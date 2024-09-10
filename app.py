@@ -45,7 +45,7 @@ def upload_file():
                 
                 data = {
                     "messaging_product": "whatsapp",
-                    "to": "5579999019286",  # Número do destinatário
+                    "to": "+5579999019286",  # Número do destinatário
                     "type": "text",
                     "text": {
                         "body": mensagem
