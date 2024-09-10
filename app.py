@@ -1,6 +1,8 @@
+#~/Documentos/IFS/projeto_eng_software/automacao_mercado/.venv/bin/python
+
 from flask import Flask, render_template, request, redirect, url_for
 import pandas as pd
-import requests
+import requests 
 import os
 
 app = Flask(__name__) #__name__
