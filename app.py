@@ -1,3 +1,4 @@
+'''
 #~/Documentos/IFS/projeto_eng_software/automacao_mercado/.venv/bin/python
 
 from flask import Flask, render_template, request, redirect, url_for
@@ -59,6 +60,52 @@ def upload_file():
             return 'Mensagens enviadas com sucesso!'
 
 if __name__ == '_main_':
+    if not os.path.exists('uploads'):
+        os.makedirs('uploads')
+    app.run(debug=True)
+
+'''
+from flask import Flask, render_template, request, redirect, url_for
+import pandas as pd
+import os
+
+app = Flask(__name__)
+
+# Rota principal para exibir o formulário de upload
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+# Rota para processar o upload e gerar o link de compartilhamento
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    if request.method == 'POST':
+        # Verifica se o arquivo foi enviado
+        if 'file' not in request.files:
+            return 'Nenhum arquivo foi enviado'
+        file = request.files['file']
+        if file.filename == '':
+            return 'Nenhum arquivo selecionado'
+        if file:
+            # Salva o arquivo no servidor
+            filepath = os.path.join('uploads', file.filename)
+            file.save(filepath)
+
+            # Lê o CSV
+            df = pd.read_csv(filepath)
+
+            # Gerar a mensagem de compartilhamento com os dados do CSV
+            mensagem = "Confira os produtos disponíveis:\n"
+            for index, row in df.iterrows():
+                mensagem += f"{row['Nome do Produto']}: R${row['Preço']:.2f}\n"
+
+            # Codificar a mensagem para URL
+            mensagem_compartilhamento = mensagem.replace(' ', '%20').replace('\n', '%0A')
+
+            # Renderizar o template com o link de compartilhamento
+            return render_template('share.html', mensagem_compartilhamento=mensagem_compartilhamento)
+
+if __name__ == '__main__':
     if not os.path.exists('uploads'):
         os.makedirs('uploads')
     app.run(debug=True)
