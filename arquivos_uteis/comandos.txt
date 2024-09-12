@@ -1,0 +1,6 @@
+Ativa o ambiente: source .venv/bin/activate
+startar o app: gunicorn -w 4 app:app
+
+startar o app: 
+    1 - selecionar o arquivo app.py 
+    2 - apertar em play
