@@ -47,7 +47,20 @@ if __name__ == '__main__':
 from flask import Flask, render_template, request, jsonify
 import pandas as pd
 import os
-import openai
+
+from openai import OpenAI
+
+
+# Configuração da API do OpenAI
+# Verifique se a variável de ambiente está sendo lida
+api_key = os.getenv('OPENAI_API_KEY')
+if api_key is None:
+    print("Chave de API não encontrada")
+else:
+    print("Chave de API configurada corretamente")
+
+
+client = OpenAI(api_key=api_key)
 import time
 
 app = Flask(__name__)
@@ -72,29 +85,19 @@ def make_openai_request(mensagem):
         '''
 def make_openai_request(mensagem):
     try:
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": "Você é um assistente útil."},
-                {"role": "user", "content": mensagem}
-            ]
-        )
+        response = client.chat.completions.create(model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "Você é um assistente útil."},
+            {"role": "user", "content": mensagem}
+        ])
         return response
-    except openai.OpenAIError as e:
+    except OpenAI.OpenAIError as e:
         # Lidar com exceções específicas da OpenAI
         print(f"Ocorreu um erro: {e}")
     except Exception as e:
         # Lidar com outras exceções
         print(f"Erro inesperado: {e}")
 
-# Configuração da API do OpenAI
-# Verifique se a variável de ambiente está sendo lida
-api_key = os.getenv('OPENAI_API_KEY')
-if api_key is None:
-    print("Chave de API não encontrada")
-else:
-    openai.api_key = api_key
-    print("Chave de API configurada corretamente")
 
 # Rota principal para exibir o formulário de upload
 @app.route('/')
@@ -129,10 +132,10 @@ def upload_file():
 
             # Verifica se houve erro
             if 'error' in response:
-                return jsonify({"error": response['error']}), 500
+                return jsonify({"error": response.error}), 500
 
             # Obter a resposta gerada pelo ChatGPT
-            mensagem_dinamica = response['choices'][0]['message']['content'].strip()
+            mensagem_dinamica = response.choices[0].message.content.strip()
 
             # Codificar a mensagem para URL
             mensagem_compartilhamento = mensagem_dinamica.replace(' ', '%20').replace('\n', '%0A')
