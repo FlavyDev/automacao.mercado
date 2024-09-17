@@ -52,6 +52,7 @@ import time
 
 app = Flask(__name__)
 
+'''
 def make_openai_request(mensagem):
     try:
         response = openai.ChatCompletion.create(
@@ -68,6 +69,23 @@ def make_openai_request(mensagem):
         return make_openai_request(mensagem)  # Tenta novamente
     except Exception as e:
         return {"error": str(e)}
+        '''
+def make_openai_request(mensagem):
+    try:
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "Você é um assistente útil."},
+                {"role": "user", "content": mensagem}
+            ]
+        )
+        return response
+    except openai.OpenAIError as e:
+        # Lidar com exceções específicas da OpenAI
+        print(f"Ocorreu um erro: {e}")
+    except Exception as e:
+        # Lidar com outras exceções
+        print(f"Erro inesperado: {e}")
 
 # Configuração da API do OpenAI
 # Verifique se a variável de ambiente está sendo lida
