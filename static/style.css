@@ -52,18 +52,19 @@ input[type="file"]:hover {
     margin-bottom: 20px;
 }*/
 #descricao {
-    border-radius: 8px; /* Ajuste o valor conforme necessário */
+    border-radius: 20px; /* Ajuste o valor conforme necessário */
     border: 1px solid #ccc; /* Opcional, define a borda do campo */
     padding: 10px; /* Opcional, adiciona um pouco de espaço interno */
     font-size: 16px; /* Opcional, ajusta o tamanho da fonte */
 }
 
 button {
+    width: 30%;
     padding: 15px 35px;
     background-color: #ffffff;
     color: rgb(126, 36, 36);
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
     cursor: pointer;
 }
 

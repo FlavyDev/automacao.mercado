@@ -22,10 +22,10 @@ header {
 
 
 .logo img {
-    width: 55%;
+    width: 45%;
     margin-top: 3%;
     margin-left: 35%;
-    margin-bottom: 2%;
+    margin-bottom: 4%;
 }
 
 footer {
@@ -57,12 +57,13 @@ footer {
 
 .botoes_footer button {
     width: 170%;
-    height: 27%;
+    height: 20%;
     cursor: pointer;
     border-radius: 62px;
     background-color: #ffffff;
-    color: #0C0001;
-    border: 1px solid #000000;
-    margin-top: 20%;  
+    color: rgb(126, 36, 36);
+    border: 1px solid rgb(126, 36, 36);
+    margin-top: 30%;
+    padding-bottom: 20%;  
     font-weight: bold;
 }

@@ -55,15 +55,15 @@ button {
     padding: 10px 20px;
     font-size: 16px;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
     background-color: white;
-    color: #e87d7d;
+    color: rgb(126, 36, 36);
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #d66a6a;
+    background-color: rgb(126, 36, 36);
     color: white;
 }
 
