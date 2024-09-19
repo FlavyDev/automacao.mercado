@@ -52,6 +52,7 @@ input[type="file"]:hover {
     margin-bottom: 20px;
 }*/
 #descricao {
+    width: 80%;
     border-radius: 20px; /* Ajuste o valor conforme necessário */
     border: 1px solid #ccc; /* Opcional, define a borda do campo */
     padding: 10px; /* Opcional, adiciona um pouco de espaço interno */
@@ -83,7 +84,7 @@ button:hover {
     }
 
     button {
-        width: 100%;
+        width: 60%;
         margin: 5px 0;
     }
 }
