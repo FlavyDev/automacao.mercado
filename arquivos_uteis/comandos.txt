@@ -1,5 +1,12 @@
-Ativa o ambiente: source .venv/bin/activate
-startar o app: gunicorn -w 4 app:app
+Instalar virtualenv no Linux: sudo apt install python3-venv
+Ativação do ambiente: . .venv/bin/activate
+instação do pacotes:  pip install flask / pip install pandas / pip install requests
+Atualizaçção do requests: python3 -m pip install --upgrade requests
+
+configuração para o Heroku: pip freeze > requirements.txt /pip install gunicorn /gunicorn /curl https://cli-assets.heroku.com/install.sh /gunicorn -w 4 app:app
+
+Config API: pip install openai / pip install flask pandas openai /openai migrate
+export OPENAI_API_KEY / echo $OPENAI_API_KEY
 
 startar o app: 
     1 - selecionar o arquivo app.py 
