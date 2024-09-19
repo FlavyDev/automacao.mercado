@@ -35,6 +35,8 @@ footer {
     display: flex;
     bottom: 0%;
     background-color: #FFDE59;
+    box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.2); /*borda sobreada */
+
 }
 
 .logo_footer {
